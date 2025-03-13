@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "./page.module.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Login() {
   const [form, setForm] = useState({ username: "", password: "" });
@@ -17,7 +18,7 @@ export default function Login() {
     setMessage("");
   
     try {
-      const response = await fetch("http://localhost:3001/login", {
+      const response = await fetch(`${API_URL}/login`, { 
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

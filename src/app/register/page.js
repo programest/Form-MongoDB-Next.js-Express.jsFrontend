@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "./register.module.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation"; 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Register() {
   const [form, setForm] = useState({ username: "", password: "", confirmPassword: "" });
@@ -23,7 +24,8 @@ export default function Register() {
     }
 
     try {
-      const response = await fetch("http://localhost:3001/users", {
+      const response = await fetch(`${API_URL}/users`, { 
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

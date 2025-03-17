@@ -43,14 +43,22 @@ app.post("/login", async (req, res) => {
     if (!user || user.password !== password) {
       return res.status(401).json({ error: "❌ Неверные учетные данные" });
     }
-
-    res.json({ message: "✅ Вход успешен!" });
+    console.log(user)
+    res.json({ message: "✅ Вход успешен!", user });
   } catch (error) {
     console.error("Ошибка на сервере:", error);
     res.status(500).json({ error: error.message });
   }
 });
 
+app.get("/users", async (req, res) => {
+  try {
+    const users = await User.find(); 
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: "Ошибка сервера" });
+  }
+});
 // Запуск сервера
 app.listen(PORT, () => {
   console.log(`✅ Сервер запущен на http://localhost:${PORT}`);

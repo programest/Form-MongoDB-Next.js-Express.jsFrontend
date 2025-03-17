@@ -2,8 +2,8 @@
 import { useState } from "react";
 import styles from "./register.module.css";
 import Link from "next/link";
-import { useRouter } from "next/navigation"; 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
+import { useRouter } from "next/navigation"; 
 
 export default function Register() {
   const [form, setForm] = useState({ username: "", password: "", confirmPassword: "" });
